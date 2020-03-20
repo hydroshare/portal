@@ -1,0 +1,9 @@
+FROM python:3.6
+ADD ./client /app
+USER root
+WORKDIR /app
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt install nodejs
+RUN npm install
+RUN npm run serve
+CMD ["/bin/bash"]

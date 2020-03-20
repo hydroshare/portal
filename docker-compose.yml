@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend1:
+    container_name: frontend1
+    build:
+      context: .
+      dockerfile: frontend
+    hostname: frontend1
+    environment:
+      SAMPLEVAR: 'hello'
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+  backend1:
+    build:
+      context: .
+      dockerfile: backend
+    container_name: backend1
+    hostname: backend1
+    environment:
+      SAMPLEVAR: 'hello'
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    command: /bin/bash
