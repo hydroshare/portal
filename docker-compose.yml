@@ -1,28 +1,26 @@
 version: '3'
 services:
-  frontend1:
-    container_name: frontend1
-    build:
-      context: .
-      dockerfile: frontend
-    hostname: frontend1
-    environment:
-      SAMPLEVAR: 'hello'
-    ports:
-      - "8080:8080"
-    stdin_open: true
-    tty: true
-    command: /bin/bash
-  backend1:
-    build:
-      context: .
-      dockerfile: backend
-    container_name: backend1
-    hostname: backend1
-    environment:
-      SAMPLEVAR: 'hello'
-    ports:
-      - "8000:8000"
-    stdin_open: true
-    tty: true
-    command: /bin/bash
+    frontend:
+        container_name: frontend
+        build:
+            context: .
+            dockerfile: Dockerfile-frontend
+        depends_on:
+          - backend
+        ports:
+          - "8080:8080"
+        hostname: frontend
+        user: root
+        stdin_open: true
+        tty: true
+    backend:
+        container_name: backend
+        build:
+            context: .
+            dockerfile: Dockerfile-backend
+        ports:
+          - "8000:8000"
+        hostname: backend
+        user: root
+        stdin_open: true
+        tty: true

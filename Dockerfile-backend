@@ -3,5 +3,4 @@ ADD ./server /app
 USER root
 WORKDIR /app
 RUN pip install -r requirements.txt
-RUN gunicorn app:app
-CMD ["/bin/bash"]
+CMD gunicorn app:app
